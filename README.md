@@ -104,13 +104,9 @@ Descrever os principais pontos ainda não resolvidos.
 
 ## 5. Planejamento
 
-O planejamento semanal da equipe está disponível em:
+O planejamento semanal e o registro semanal de atividades da equipe está disponível em:
 
-[`PLANEJAMENTO.md`](PLANEJAMENTO.md)
-
-O registro semanal de atividades está disponível em:
-
-[`PROGRESSO.md`](PROGRESSO.md)
+[`PROGRESSO.md`](PROGRESSO)
 
 ---
 
