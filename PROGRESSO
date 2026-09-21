@@ -3,7 +3,7 @@
 
 **Equipe:** Equipe SCUDERIA IFPAR 
 **Turma:** MECA3M 
-**Professor técnico:** Jefferson Doulan
+**Professor técnico:** Jefferson Doolan
 
 Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. A equipe não deve apagar registros anteriores. Caso o planejamento mude, a alteração deve ser descrita e justificada.
 
@@ -13,54 +13,44 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Planejado
 
-- Definir a arquitetura geral do veículo.
-- Escolher a arquitetura de tração e direção.
-- Elaborar o primeiro diagrama elétrico.
-- Criar a estrutura inicial do repositório.
+- Início do planejamento
+- Organização inicial do repositório
+- Pesquisa inicial
 
 ## Concluído
 
-- Arquitetura geral definida.
-- Definida tração com dois motores DC.
-- Criado diagrama elétrico inicial.
-- Repositório organizado com `README.md`, `PLANEJAMENTO.md` e `PROGRESSO.md`.
+- _____________
 
 ## Não concluído
 
-- Escolha definitiva do driver de motores.
+- ____________
 
 ## Problemas ou impedimentos
 
-- O driver inicialmente escolhido pode não suportar a corrente de partida dos motores.
+- ____________
 
 ## Decisões técnicas da semana
 
-- A equipe decidiu comparar duas opções de driver antes da montagem definitiva.
-- Foi decidido manter o ESP32 como controlador principal.
+- ____________
 
 ## Testes realizados
 
 | Teste | Resultado |
 |---|---|
-| Alimentação do ESP32 em bancada | Funcionamento normal |
-| Teste individual dos motores | Ambos funcionaram |
+| ____________________ | ____________________ |
 
 ## Próximas ações
 
-- Medir a corrente dos motores.
-- Definir o driver de potência.
-- Iniciar montagem mecânica.
-- Implementar recepção dos comandos UDP.
-
+- _____________
 ---
 
 # Semana 2 — 23/09/2026 a 29/09/2026
 
 ## Planejado
 
-- ____________________
-- ____________________
-- ____________________
+- Testar componentes e executar a montagens simples (elétrica e eletrônica)
+- Testar os primeiros códigos
+- Definir a arquitetura geral
 
 ## Concluído
 
@@ -96,7 +86,9 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Planejado
 
-- ____________________
+- Avançar nos testes da semana anterior
+- Identificar e solucionar possíveis falhas
+- Atualizar a documentação
 
 ## Concluído
 
@@ -130,7 +122,7 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Planejado
 
-- ____________________
+- Finalização de detalhes importantes em relação ao controle do carrinho (circuito elétrico, envio do json, código funcional e documentação)
 
 ## Concluído
 
@@ -212,40 +204,4 @@ Descrever qual subsistema ou conjunto de subsistemas será demonstrado na bancad
 
 ---
 
-# Modelo para semanas posteriores
-
-Copiar o bloco abaixo sempre que uma nova semana for iniciada.
-
-```markdown
-# Semana X — DD/MM/AAAA a DD/MM/AAAA
-
-## Planejado
-
-- ...
-
-## Concluído
-
-- ...
-
-## Não concluído
-
-- ...
-
-## Problemas ou impedimentos
-
-- ...
-
-## Decisões técnicas da semana
-
-- ...
-
-## Testes realizados
-
-| Teste | Resultado |
-|---|---|
-| ... | ... |
-
-## Próximas ações
-
-- ...
 ```
