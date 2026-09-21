@@ -4,7 +4,7 @@
 
 **Nome da equipe:** Equipe SCUDERIA IFPAR 
 **Turma:** MECA3M 
-**Professor técnico:** Jefferson Doulan
+**Professor técnico:** Jefferson Doolan
 
 ### Integrantes e áreas de atuação
 
@@ -45,7 +45,7 @@ Exemplo:
 
 ## 3. Arquitetura geral
 
-Inserir aqui um diagrama da arquitetura do sistema ou um link para o arquivo correspondente em `docs/arquitetura/`.
+[`docs/arquitetura`](docs/arquitetura)
 
 Exemplo de organização:
 
@@ -177,7 +177,7 @@ Os campos definitivos de telemetria serão definidos pela equipe em conjunto com
 
 ## 9. Testes realizados
 
-Registrar os testes relevantes do projeto. Para registros mais detalhados, utilizar `docs/testes/`.
+Registrar os testes relevantes do projeto. Para registros mais detalhados, utilizar [`docs/testes`](docs/testes).
 
 | Data | Teste | Resultado | Próxima ação |
 |---|---|---|---|
