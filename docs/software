@@ -1,1 +1,77 @@
-...
+# Código para avançar, parar e dar ré
+## SCUDERIA IFPAR
+**Descrição:** O código foi elaborado com o objetivo de testar a comunicação ESP32-> Driver-> Motores e faz com que as rodas girem para frente durante 3 segundos, parem (3 seg) e girem para o sentido oposto (3 seg).
+
+const int enA = 23, in1 = 22, in2 = 21;
+const int enB = 18, in3 = 19, in4 = 33;
+
+void rStop() { // Para o motor direito
+ digitalWrite(in1, LOW);
+ digitalWrite(in2, LOW);
+}
+
+void lStop() { // Para o motor esquerdo
+ digitalWrite(in3, LOW);
+ digitalWrite(in4, LOW);
+}
+
+void Stop() { //Para os motores
+  rStop(); lStop();
+}
+
+void rFrente() { // Move motor direito para frente com vel 100%
+ rStop();
+ digitalWrite(in1, LOW);
+ digitalWrite(in2, HIGH);
+}
+
+void lFrente() { // Move motor esquerdo para frente com vel 100%
+ lStop();
+ digitalWrite(in3, LOW);
+ digitalWrite(in4, HIGH);
+}
+
+void Frente() { //Move motores para frente com vel 100%
+rFrente(); lFrente();
+}
+
+void rTras() { // Move motor direito para trás com vel 100%
+ rStop();
+ digitalWrite(in1, HIGH);
+ digitalWrite(in2, LOW);
+}
+
+void lTras() { // Move motor direito para frente com vel 100%
+ lStop();
+ digitalWrite(in3, HIGH);
+ digitalWrite(in4, LOW);
+}
+
+void Tras() { // Move motor direito para frente com vel 100%
+ Stop();
+ rTras();
+ lTras();
+}
+
+void setup() {
+ pinMode(in1, OUTPUT);
+ pinMode(in2, OUTPUT);
+ pinMode(in3, OUTPUT);
+ pinMode(in4, OUTPUT);
+}
+
+void loop() {
+ //vel 100%
+ analogWrite(enB, 255);
+ analogWrite(enA, 255);
+ Frente();
+ delay(3000);
+ Stop();
+ delay(3000);
+ Tras();
+ delay(3000);
+ Stop();
+ delay(3000);
+ 
+
+}
