@@ -19,7 +19,9 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Concluído
 
-- _____________
+- Início do planejamento
+- Organização inicial do repositório
+- Pesquisa inicial
 
 ## Não concluído
 
@@ -54,8 +56,10 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Concluído
 
-- ____________________
-- ____________________
+- Montagem do kit e teste dos componentes
+- Teste de outros motores
+- Elaboração do primeiro código no simulador (Tinkercad)
+- Teste do código
 
 ## Não concluído
 
@@ -67,7 +71,7 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Decisões técnicas da semana
 
-- ____________________
+- Trabalhar na utilização de um celular como controle do carrinho
 
 ## Testes realizados
 
@@ -75,10 +79,18 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 |---|---|
 | ____________________ | ____________________ |
 
+| Teste | Resultado |
+|---|---|
+|Código para avançar, parar e dar ré|Resultado satisfatório e dentro do esperado|
+
+| Teste | Resultado |
+|---|---|
+| ____________________ | ____________________ |
+
 ## Próximas ações
 
-- ____________________
-- ____________________
+- Cogitando a implementação de outros motores
+- 
 
 ---
 
