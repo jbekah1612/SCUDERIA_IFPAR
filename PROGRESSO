@@ -23,27 +23,6 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 - Organização inicial do repositório
 - Pesquisa inicial
 
-## Não concluído
-
-- ____________
-
-## Problemas ou impedimentos
-
-- ____________
-
-## Decisões técnicas da semana
-
-- ____________
-
-## Testes realizados
-
-| Teste | Resultado |
-|---|---|
-| ____________________ | ____________________ |
-
-## Próximas ações
-
-- _____________
 ---
 
 # Semana 2 — 23/09/2026 a 29/09/2026
@@ -61,14 +40,6 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 - Elaboração do primeiro código no simulador (Tinkercad)
 - Teste do código
 
-## Não concluído
-
-- ____________________
-
-## Problemas ou impedimentos
-
-- ____________________
-
 ## Decisões técnicas da semana
 
 - Trabalhar na utilização de um celular como controle do carrinho
@@ -77,20 +48,11 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 | Teste | Resultado |
 |---|---|
-| ____________________ | ____________________ |
-
-| Teste | Resultado |
-|---|---|
 |Código para avançar, parar e dar ré|Resultado satisfatório e dentro do esperado|
-
-| Teste | Resultado |
-|---|---|
-| ____________________ | ____________________ |
 
 ## Próximas ações
 
 - Cogitando a implementação de outros motores
-- 
 
 ---
 
@@ -104,29 +66,18 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Concluído
 
-- ____________________
-
-## Não concluído
-
-- ____________________
-
-## Problemas ou impedimentos
-
-- ____________________
-
-## Decisões técnicas da semana
-
-- ____________________
+- Soldagem das baterias e incrementação da alimentação no circuito 
+- Atualização do código: comunicação via MQTT
 
 ## Testes realizados
 
 | Teste | Resultado |
 |---|---|
-| ____________________ | ____________________ |
+| Alimentação do circuito com baterias | Satisfatório. Os motores respondem bem à alimentação|
 
 ## Próximas ações
 
-- ____________________
+- Testar a comunicação MQTT
 
 ---
 
@@ -138,29 +89,22 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Concluído
 
-- ____________________
-
-## Não concluído
-
-- ____________________
-
-## Problemas ou impedimentos
-
-- ____________________
+- Teste com código de controle remoto (celular) via MQTT.
 
 ## Decisões técnicas da semana
 
-- ____________________
+- Ajustar parâmetros de dirigibilidade (especialmente as curvas)
+- Alterar modo de comunicação entre a interface do controle e o esp32, para garantir maior confiança do condutor
 
 ## Testes realizados
 
 | Teste | Resultado |
 |---|---|
-| ____________________ | ____________________ |
+| Primeira comunicação MQTT | O carrinho respondeu bem aos comandos contidos no código do microcontrolador. Identificamos que a tensão da bateria estava chegando no USB devido a uma falta de proteção no esp32.|
 
 ## Próximas ações
 
-- ____________________
+- Mlehorar dirigibilidade 
 
 ---
 
@@ -174,23 +118,23 @@ Este arquivo deve registrar, de forma objetiva, o andamento semanal do projeto. 
 
 ## Concluído
 
-- ____________________
+- Tentativa do teste com o novo código (melhores parâmetros de dirigibilidade)
 
 ## Não concluído
 
-- ____________________
+- O teste do código não conseguiu ser efetivamente realizado.
 
 ## Problemas ou impedimentos
 
-- ____________________
+- Identificamos que o regulador do microcontrolador foi queimado no último teste (resultado do aumento de tensão provocado pela bateria ligada). Logo, foi impossível introduzir um novo código no esp32
 
 ## Decisões técnicas da semana
 
-- ____________________
+- A data da avaliação foi alterada para o dia 20/10.
 
 ## Demonstração preparada para a AP1
 
-Descrever qual subsistema ou conjunto de subsistemas será demonstrado na bancada.
+Apresentação da arquitetura geral.
 
 ## Situação geral na AP1
 
