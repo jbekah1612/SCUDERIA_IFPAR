@@ -75,3 +75,394 @@ void loop() {
  
 
 }
+
+# Código com integração MQTT
+## SCUDERIA IFPAR
+**Descrição:** Código construído com a intenção de testar a comunicação MQTT pelo controle provisório (celular) e o esp32.
+
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+// CONFIGURAÇÃO DO WI-FI
+
+const char* ssid = "A14 de Allane";
+const char* password = "...";
+
+// CONFIGURAÇÃO DO MQTT
+
+const char* mqttServer = "broker.emqx.io";
+const int mqttPort = 1883;
+
+const char* mqttTopic = "carrinho/comando";
+
+// OBJETOS DE WI-FI E MQTT
+
+WiFiClient espClient;
+
+PubSubClient client(espClient);
+
+// PINOS DOS MOTORES
+
+const int enA = 23;
+const int in1 = 22;
+const int in2 = 21;
+
+const int enB = 18;
+const int in3 = 5;
+const int in4 = 19;
+
+void setup() {
+
+  Serial.begin(9600);
+
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+
+  pinMode(enB, OUTPUT);
+  pinMode(in3, OUTPUT);
+  pinMode(in4, OUTPUT);
+
+  Stop();
+
+  conectarWiFi();
+
+  client.setServer(mqttServer, mqttPort);
+
+  client.setCallback(callback);
+
+
+  Serial.println("Tudo pronto!");
+  Serial.println("Envie um JSON pelo Monitor Serial ou MQTT.");
+}
+
+
+void loop() {
+
+  if (!client.connected()) {
+    conectarMQTT();
+  }
+
+  client.loop();
+
+
+  // RECEBIMENTO DE JSON PELO MONITOR SERIAL
+
+
+  if (Serial.available() > 0) {
+
+    String mensagem = Serial.readStringUntil('\n');
+
+    mensagem.trim();
+
+    if (mensagem.length() > 0) {
+
+      Serial.print("JSON recebido pelo Serial: ");
+      Serial.println(mensagem);
+
+      processarJSON(mensagem);
+    }
+  }
+}
+
+// CONEXÃO WI-FI
+
+void conectarWiFi() {
+
+  Serial.println();
+  Serial.print("Conectando ao Wi-Fi: ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED) {
+
+    delay(500);
+
+    Serial.print(".");
+  }
+
+  Serial.println();
+  Serial.println("Wi-Fi conectado!");
+
+  Serial.print("IP do ESP32: ");
+  Serial.println(WiFi.localIP());
+}
+
+// CONEXÃO MQTT
+
+void conectarMQTT() {
+
+  while (!client.connected()) {
+
+    Serial.println("Conectando ao MQTT...");
+
+
+    // Nome que identifica o ESP32 no broker
+    String clientID = "ESP32Robot-";
+
+    clientID += String(random(0xffff), HEX);
+
+    if (client.connect(
+          clientID.c_str(),
+          mqttUsername,
+          mqttPassword
+        )) {
+
+      Serial.println("MQTT conectado!");
+
+
+      client.subscribe(mqttTopic);
+
+      Serial.print("Inscrito no tópico: ");
+      Serial.println(mqttTopic);
+
+    }
+
+    else {
+
+      Serial.print("Falha MQTT. Estado: ");
+      Serial.println(client.state());
+
+      delay(2000);
+    }
+  }
+}
+
+// CALLBACK MQTT
+
+void callback(
+  char* topic,
+  byte* payload,
+  unsigned int length
+) {
+
+  Serial.println();
+  Serial.println("===== MQTT =====");
+
+
+  Serial.print("Tópico: ");
+  Serial.println(topic);
+
+
+  String mensagem = "";
+
+  for (unsigned int i = 0; i < length; i++) {
+
+    mensagem += (char)payload[i];
+  }
+
+
+  Serial.print("JSON recebido pelo MQTT: ");
+  Serial.println(mensagem);
+
+
+  processarJSON(mensagem);
+
+
+  Serial.println("================");
+}
+
+
+// PROCESSAMENTO DO JSON
+
+void processarJSON(String mensagem) {
+
+  int inicioCom = mensagem.indexOf("\"comando\":\"");
+
+  if (inicioCom == -1) {
+
+    Serial.println("Erro: campo comando nao encontrado.");
+
+    return;
+  }
+
+
+  inicioCom += 11;
+
+  int fimComando = mensagem.indexOf(
+    "\"",
+    inicioCom
+  );
+
+  if (fimComando == -1) {
+
+    Serial.println("Erro: comando invalido.");
+
+    return;
+  }
+
+
+  // extrai o comando
+
+  String comando = mensagem.substring(
+    inicioCom,
+    fimComando
+  );
+
+  // VELOCIDADE
+
+  int inicioVelocidade =
+    mensagem.indexOf("\"velocidade\":");
+
+  if (inicioVelocidade == -1) {
+
+    Serial.println(
+      "Erro: campo velocidade nao encontrado."
+    );
+
+    return;
+  }
+
+  inicioVelocidade += 13;
+
+
+  int fimVelocidade = mensagem.indexOf(
+    ",",
+    inicioVelocidade
+  );
+
+
+  if (fimVelocidade == -1) {
+
+    fimVelocidade = mensagem.indexOf(
+      "}",
+      inicioVelocidade
+    );
+  }
+
+  String textoVelocidade = mensagem.substring(
+    inicioVelocidade,
+    fimVelocidade
+  );
+
+  textoVelocidade.trim();
+
+  int velocidade = textoVelocidade.toInt();
+
+
+  Serial.println("--------------------");
+
+  Serial.print("Comando: ");
+  Serial.println(comando);
+
+  Serial.print("Velocidade: ");
+  Serial.println(velocidade);
+
+  Serial.println("--------------------");
+
+
+
+  if (comando == "frente") {
+
+    frente(velocidade);
+  }
+
+  else if (comando == "tras") {
+
+    tras(velocidade);
+  }
+
+  else if (comando == "direita") {
+
+    direita(velocidade);
+  }
+
+  else if (comando == "esquerda") {
+
+    esquerda(velocidade);
+  }
+
+  else if (comando == "parar") {
+
+    Stop();
+  }
+
+  else {
+
+    Serial.println("Comando desconhecido!");
+  }
+}
+
+
+// FRENTE
+
+void frente(int velocidade) {
+
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+
+  analogWrite(enA, velocidade);
+  analogWrite(enB, velocidade);
+
+  Serial.println("Movimento: FRENTE");
+}
+
+// TRÁS
+
+void tras(int velocidade) {
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+
+  analogWrite(enA, velocidade);
+  analogWrite(enB, velocidade);
+
+  Serial.println("Movimento: TRAS");
+}
+
+
+// DIREITA
+
+void direita(int velocidade) {
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+
+  digitalWrite(in3, HIGH);
+  digitalWrite(in4, LOW);
+
+  analogWrite(enA, 0);
+  analogWrite(enB, velocidade);
+
+  Serial.println("Movimento: DIREITA");
+}
+
+
+// ESQUERDA
+
+void esquerda(int velocidade) {
+
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+
+  analogWrite(enA, velocidade);
+  analogWrite(enB, 0);
+
+  Serial.println("Movimento: ESQUERDA");
+}
+
+// PARAR
+
+void Stop() {
+
+  analogWrite(enA, 0);
+  analogWrite(enB, 0);
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, LOW);
+
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, LOW);
+
+  Serial.println("Movimento: PARADO");
+}
